@@ -1,6 +1,9 @@
 {% extends "base.html" %}
 {% block content %}
-    <h2>About Page</h2>
+
+    
+
+    <h2>{{ page_title }}</h2>
     <p>
         The formation of the group grew out of a meeting Gandalf had with Thorin in Bree which kindled Thorin's interest
         in recapturing his long lost family inheritance. (Thorin's grandfather had been the King under the Mountain when
@@ -11,131 +14,42 @@
         to leave on other business, welcomed a fourteenth to fill into their party.
     </p>
 
-    <div class="row featurette">
-        <div class="col-md-7">
-            <h3>Thorin Oakenshield</h3>
-            <p>
-                Thorin II was born in TA 2746 to the Dwarf prince Thráin II in the city of the Lonely Mountain. Early in
-                his youth, Thorin and the other Dwarves of the Lonely Mountain were forced to flee by the dragon Smaug,
-                in TA 2770. While in exile, he quickly grew into a capable warrior. This was demonstrated at the Battle
-                of Azanulbizar, near Moria, in TA 2799. He fought with one of the Dwarven armies beneath Moria's
-                East-gate, and at some point in the battle, his shield broke, and, using an oaken tree branch found on
-                the ground as a shield, he gained the epithet "Oakenshield," which remained with him even in death.[2]
-                Thorin became King-in-Exile of Durin's Folk in TA 2850, after his father went missing and died in the
-                dungeons of Dol Guldur.
-            </p>
-        </div>
-        <div class="col-md-5">
-            <img src="https://static.wikia.nocookie.net/lotr/images/7/76/Orcrist-Sword-of-Thorin-Oakenshield.jpg" alt="">
-        </div>
-    </div>
+    {% for member in company %}
 
-    <div class="row featurette">
-        <div class="col-md-5">
-            <img src="https://static.wikia.nocookie.net/lotr/images/8/86/KiliPoster.jpeg" alt="">
-        </div>
-        <div class="col-md-7">
-            <h3>Filli and Killi</h3>
-            <p>
-                Fíli and Kíli were nephews of Thorin, who was the elder brother of their mother, Dís. They were also
-                nephews of Frerin, grandsons of Thráin II, and great-grandsons of Thrór. Fíli's most distinguishing
-                feature was his long nose, the longest of any of the Dwarves in Thorin's company.[2]
-            </p>
-        </div>
-    </div>
+        <div class="row featurette">
+            {% if loop.index % 2 != 0%}
+                <div class="col-md-7">
+                    <h3><a href="/about/{{ member.url}}">{{ loop.index }}. {{ member.name}}</a></h3>
+                    <p>
+                        {{ member.description}}
+                    </p>
+                </div>
+                <div class="col-md-5">
+                    <img src="{{ member.image_source }}" alt="" class=" featurette-image, image-responsive">
+                </div>
 
-    <div class="row featurette">
-        <div class="col-md-7">
-            <h3>Oin</h3>
-            <p>
-                Óin was the older brother of Glóin, cousin of Dwalin and Balin, and uncle of Gimli. Óin's uncle was
-                Fundin, the father of Balin and Dwalin.
+            {% else %}
 
-                Óin fought in the Battle of Azanulbizar along with Thorin Oakenshield, and in TA 2941 joined Thorin's
-                company on the quest to reclaim the Lonely Mountain, wearing a brown hood.[2] Óin was one of the Dwarves
-                who bet that Bilbo would come along with them to reclaim the Lonely Mountain. Óin and his brother Glóin
-                were usually in charge of preparing the fire for the Company, as they were the most skilled of the
-                group. He fought in and survived the Battle of Five Armies, and later settled in the Lonely Mountain
-                with King Dáin II Ironfoot, along with many other Dwarves of the company of Thorin.
-            </p>
-        </div>
-        <div class="col-md-5">
-            <img src="https://static.wikia.nocookie.net/lotr/images/4/4b/Oinstaff.jpg" alt="">
-        </div>
-    </div>
+                <div class="col-md-5">
+                    <img src="{{ member.image_source }}" alt="" class=" featurette-image, image-responsive">
+                </div>
+                <div class="col-md-7">
+                    <h3><a href="/about/{{ member.url}}">{{ loop.index }}. {{ member.name}}</a></h3>
+                    <p>
+                        {{ member.description}}
+                    </p>
+                </div>
 
-    <div class="row featurette">
-        <div class="col-md-5">
-            <img src="https://static.wikia.nocookie.net/lotr/images/0/0a/Gloin_%28Ally%29.JPG" alt="">
+            {% endif %}
         </div>
-        <div class="col-md-7">
-            <h3>Gloin</h3>
-            <p>
-                Glóin was born in TA 2783, after the dragon Smaug desolated Erebor. He was the younger child of Gróin
-                and younger brother of Óin.
 
-                In TA 2799, Glóin was known to have fought in the Battle of Azanulbizar, the last battle of the War of
-                the Dwarves and Orcs, though it is unknown how significant his contribution was, being 16 years old.
-            </p>
-        </div>
-    </div>
+        {% if loop.index != loop.length %}
 
-    <div class="row featurette">
-        <div class="col-md-7">
-            <h3>Balin</h3>
-            <p>
-                Balin was a Dwarf leader, the son of Fundin, and elder brother of Dwalin. He was one of the thirteen
-                Dwarves who accompanied Thorin II Oakenshield on the quest to regain the Lonely Mountain.
-                A Dwarf Lord known for his wise counsel and willingness to listen, he was one of Thorin's closest
-                friends and advisers. Balin was distantly related to him, and a descendant of the noble House of Durin.
-            </p>
-        </div>
-        <div class="col-md-5">
-            <img src="https://static.wikia.nocookie.net/lotr/images/e/e0/Balin_%28Leadership%29.JPG" alt="">
-        </div>
-    </div>
+            <hr class="featurette-divider">
 
-    <div class="row featurette">
-        <div class="col-md-5">
-            <img src="https://static.wikia.nocookie.net/lotr/images/1/10/Weta_-_Dwalin%27s_Armor.jpg" alt="">
-        </div>
-        <div class="col-md-7">
-            <h3>Dwalin</h3>
-            <p>
-                Dwalin was one of the Dwarves who traveled with Bilbo and Gandalf as a member of Thorin and Company on
-                the quest to regain the Lonely Mountain from the Dragon Smaug. He was the brother of Balin and the
-                youngest son of Fundin.
-            </p>
-        </div>
-    </div>
+        {% endif %}
 
-    <div class="row featurette">
-        <div class="col-md-7">
-            <h3>Ori</h3>
-            <p>
-                Ori was a member of Thorin's Company of Dwarves and participated in the Quest of Erebor, as well as
-                fighting in and surviving the Battle of Five Armies. He, along with his cousins Dori and Nori,[2] were
-                remote kinsmen of Thorin II Oakenshield.
-            </p>
-        </div>
-        <div class="col-md-5">
-            <img src="https://static.wikia.nocookie.net/lotr/images/2/2b/Ori_%28Lore%29.JPG" alt="">
-        </div>
-    </div>
+    {% endfor %}
 
-    <div class="row featurette">
-        <div class="col-md-5">
-            <img src="https://static.wikia.nocookie.net/lotr/images/2/20/Gandalf_%28Hero%29.JPG" alt="">
-        </div>
-        <div class="col-md-7">
-            <h3>Gandalf</h3>
-            <p>
-                Gandalf, known temporarily as the Grey and later the White, and originally named Olórin (Quenya), was an
-                Istar (Wizard), dispatched to Middle-earth in the Third Age to combat the threat of Sauron. He joined
-                Thorin II and his company to reclaim the Lonely Mountain from Smaug, helped form the Fellowship of the
-                Ring to destroy the One Ring, and led the Free Peoples of the World in the final campaign of the War of
-                the Ring.
-            </p>
-        </div>
-    </div>
+    
 {% endblock %}

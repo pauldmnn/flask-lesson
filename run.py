@@ -2,11 +2,14 @@ import os
 import json
 
 # First import flask class
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, flash
+if os.path.exists("env.py"):
+    import env
 
 # Creat an instance of this and store it in a variable called app. 
 # The first argument is the name of the application module
 app = Flask(__name__)
+app.secret_key = os.environ.get("SECRET_KEY")
 
 @app.route("/")
 def index():
@@ -35,7 +38,8 @@ def about_member(member_name):
 @app.route("/contact", methods=["GET", "POST"])
 def contact():
     if request.method == "POST":
-        print(request.form["email"])
+        flash("Thanks {}, we have received your message!".format(
+            request.form.get("name")))
 
     return render_template("contact.html", page_title="Contact")
 
